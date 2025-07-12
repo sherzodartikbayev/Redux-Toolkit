@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import { logo } from '../constants'
+import {Link} from 'react-router-dom'
+import {logo} from '../constants'
 
 const Navbar = () => {
 	return (
@@ -8,7 +8,7 @@ const Navbar = () => {
 			bis_skin_checked='1'
 		>
 			<Link to={'/'}>
-				<img src={logo} alt='' />
+				<img src={logo} alt='logo' />
 			</Link>
 
 			<nav className='d-inline-flex mt-2 mt-md-0 ms-md-auto'>

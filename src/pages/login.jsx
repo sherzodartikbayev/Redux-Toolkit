@@ -4,7 +4,7 @@ import { logo } from '../constants'
 import { loginUserStart } from '../slice/auth'
 import Input from '../ui/input'
 
-const Register = () => {
+const Login = () => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const dispatch = useDispatch()
@@ -49,4 +49,4 @@ const Register = () => {
 	)
 }
 
-export default Register
+export default Login

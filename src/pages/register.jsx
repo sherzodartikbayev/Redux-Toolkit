@@ -1,11 +1,20 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { logo } from '../constants'
+import { registerUserStart } from '../slice/auth'
 import Input from '../ui/input'
 
 const Register = () => {
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+	const dispatch = useDispatch()
+	const { isLoading } = useSelector(state => state.auth)
+
+	const loginHandler = e => {
+		e.preventDefault()
+		dispatch(registerUserStart())
+	}
 
 	return (
 		<div className='text-center mt-5'>
@@ -33,13 +42,18 @@ const Register = () => {
 						type={'password'}
 					/>
 
-					<button className='w-100 btn btn-lg btn-primary mt-2' type='submit'>
-						Register
+					<button
+						className='w-100 btn btn-lg btn-primary mt-2'
+						onClick={loginHandler}
+						type='submit'
+						disabled={isLoading}
+					>
+						{isLoading ? 'Loading...' : 'Register'}
 					</button>
 				</form>
 			</main>
 		</div>
 	)
 }
-
+ 
 export default Register
