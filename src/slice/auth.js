@@ -1,9 +1,10 @@
-import {createSlice} from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
 	isLoading: false,
 	loggedIn: false,
 	user: null,
+	error: null,
 }
 
 const authSlice = createSlice({
@@ -14,14 +15,27 @@ const authSlice = createSlice({
 		loginUserStart: state => {
 			state.isLoading = true
 		},
-		loginUserSuccess: state => {},
-		loginUserFailure: state => {},
+		loginUserSuccess: state => {
+			state.loggedIn = true
+			state.isLoading = false
+		},
+		loginUserFailure: state => {
+			state.error = 'error'
+			state.isLoading = false
+		},
+
 		// Register
 		registerUserStart: state => {
 			state.isLoading = true
 		},
-		registerUserSuccess: state => {},
-		registerUserFailure: state => {},
+		registerUserSuccess: state => {
+			state.loggedIn = true
+			state.isLoading = false
+		},
+		registerUserFailure: state => {
+			state.error = 'error'
+			state.isLoading = false
+		},
 	},
 })
 

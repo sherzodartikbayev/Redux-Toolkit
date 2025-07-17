@@ -1,7 +1,12 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { logo } from '../constants'
-import { loginUserStart } from '../slice/auth'
+import AuthService from '../service/auth'
+import {
+	loginUserFailure,
+	loginUserStart,
+	loginUserSuccess,
+} from '../slice/auth'
 import Input from '../ui/input'
 
 const Login = () => {
@@ -9,17 +14,28 @@ const Login = () => {
 	const [password, setPassword] = useState('')
 	const dispatch = useDispatch()
 	const { isLoading } = useSelector(state => state.auth)
-
-	const loginHandler = e => {
+	
+	const loginHandler = async e => {
 		e.preventDefault()
 		dispatch(loginUserStart())
+		const user = { email, password }
+
+		try {
+			const response = AuthService.userLogin(user)
+			console.log(response)
+			console.log(user);
+			dispatch(loginUserSuccess())
+		} catch (error) {
+			console.log(error)
+			dispatch(loginUserFailure())
+		}
 	}
 
 	return (
 		<div className='text-center mt-5'>
 			<main className='form-signin w-25 m-auto'>
 				<form>
-					<img className='mb-2' src={logo} alt='' width='72' height='60' />
+					<img className='mb-2' src={logo} alt='logo' width='72' height='60' />
 					<h1 className='h3 mb-3 fw-normal'>Please Login</h1>
 
 					<Input
