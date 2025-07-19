@@ -22,8 +22,8 @@ const authSlice = createSlice({
 			setItem('token', action.payload.token)
 		},
 		signUserFailure: (state, action) => {
-			state.error = action.payload
 			state.isLoading = false
+			state.error = action.payload
 		},
 	},
 })

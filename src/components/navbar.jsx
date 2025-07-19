@@ -1,7 +1,13 @@
-import {Link} from 'react-router-dom'
-import {logo} from '../constants'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { logo } from '../constants'
 
 const Navbar = () => {
+	const { loggedIn, user } = useSelector(state => state.auth)
+
+	console.log(loggedIn, user);
+	
+
 	return (
 		<div
 			className='d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom container pt-3'

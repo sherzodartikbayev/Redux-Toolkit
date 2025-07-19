@@ -21,7 +21,7 @@ const Register = () => {
 		try {
 			const response = await AuthService.userRegister(user)
 			console.log(response.user)
-			dispatch(signUserSuccess())
+			dispatch(signUserSuccess(response.user))
 		} catch (error) {
 			dispatch(signUserFailure(error.response.data.errors))
 		}
