@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import ValidationError from '../components/validation-error'
 import { logo } from '../constants'
 import AuthService from '../service/auth'
 import { signUserFailure, signUserStart, signUserSuccess } from '../slice/auth'
@@ -32,6 +33,8 @@ const Register = () => {
 				<form>
 					<img className='mb-2' src={logo} alt='' width='72' height='60' />
 					<h1 className='h3 mb-3 fw-normal'>Please Register</h1>
+
+					<ValidationError />
 
 					<Input
 						label={'Username'}
