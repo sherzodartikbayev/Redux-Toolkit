@@ -7,7 +7,13 @@ import Home from './pages/home'
 import Login from './pages/login'
 import Profile from './pages/profile'
 import Register from './pages/register'
+import ArticleService from './service/article'
 import AuthService from './service/auth'
+import {
+	getArticleFailure,
+	getArticleStart,
+	getArticleSuccess,
+} from './slice/article'
 import { signUserSuccess } from './slice/auth'
 
 const App = () => {
@@ -17,15 +23,27 @@ const App = () => {
 		try {
 			const response = await AuthService.getUser()
 			dispatch(signUserSuccess(response.user))
-			console.log(response)
 		} catch (error) {
 			console.log(error)
+		}
+	}
+
+	const getArticles = async () => {
+		dispatch(getArticleStart())
+
+		try {
+			const response = await ArticleService.getArticles()
+			dispatch(getArticleSuccess(response.articles))
+		} catch (error) {
+			console.log(error)
+			dispatch(getArticleFailure(error.response.data.errors))
 		}
 	}
 
 	useEffect(() => {
 		const token = getItem('token')
 		if (token) getUser()
+		getArticles()
 	}, [])
 
 	const route = createBrowserRouter([

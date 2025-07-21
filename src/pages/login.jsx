@@ -21,7 +21,6 @@ const Login = () => {
 
 		try {
 			const response = await AuthService.userLogin(user)
-			console.log(response.user)
 			dispatch(signUserSuccess(response.user))
 			navigate('/')
 		} catch (error) {

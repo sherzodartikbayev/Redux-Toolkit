@@ -22,7 +22,6 @@ const Register = () => {
 
 		try {
 			const response = await AuthService.userRegister(user)
-			console.log(response.user)
 			dispatch(signUserSuccess(response.user))
 			navigate('/')
 		} catch (error) {
