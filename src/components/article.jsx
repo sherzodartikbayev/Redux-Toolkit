@@ -14,33 +14,27 @@ const Article = ({ article }) => {
 					<rect width='100%' height='100%' fill='#55595c'></rect>
 				</svg>
 				<div className='card-body' bis_skin_checked='1'>
-					<p className='card-text fw-bold'>{article.title}</p>
+					<p className='card-text fw-bold m-0'>{article.title}</p>
 					<p className='card-text'>{article.description}</p>
-					<div
-						className='d-flex justify-content-between align-items-center'
-						bis_skin_checked='1'
-					>
-						<div className='btn-group' bis_skin_checked='1'>
-							<button
-								type='button'
-								className='btn btn-sm btn-outline-primary'
-							>
-								View
-							</button>
-							<button
-								type='button'
-								className='btn btn-sm btn-outline-secondary'
-							>
-								Edit
-							</button>
-							<button type='button' className='btn btn-sm btn-outline-danger'>
-								Delete
-							</button>
-						</div>
-						<small className='text-muted fw-bold text-capitalize'>
-							{article.author.username}
-						</small>
+				</div>
+				<div
+					className='card-footer d-flex justify-content-between align-items-center'
+					bis_skin_checked='1'
+				>
+					<div className='btn-group' bis_skin_checked='1'>
+						<button type='button' className='btn btn-sm btn-outline-primary'>
+							View
+						</button>
+						<button type='button' className='btn btn-sm btn-outline-secondary'>
+							Edit
+						</button>
+						<button type='button' className='btn btn-sm btn-outline-danger'>
+							Delete
+						</button>
 					</div>
+					<small className='text-muted fw-bold text-capitalize'>
+						{article.author.username}
+					</small>
 				</div>
 			</div>
 		</div>
