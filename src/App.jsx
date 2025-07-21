@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { getItem } from './helpers/persistance-storage'
 import RootLayout from './layout/root-layout'
+import ArticleDetail from './pages/article-detail'
 import Home from './pages/home'
 import Login from './pages/login'
 import Profile from './pages/profile'
@@ -66,6 +67,10 @@ const App = () => {
 				{
 					path: '/profile',
 					element: <Profile />,
+				},
+				{
+					path: '/article/:slug',
+					element: <ArticleDetail />,
 				},
 			],
 		},

@@ -1,4 +1,8 @@
+import { useNavigate } from 'react-router-dom'
+
 const Article = ({ article }) => {
+	const navigate = useNavigate()
+
 	return (
 		<div className='col' bis_skin_checked='1'>
 			<div className='card h-100 shadow-sm' bis_skin_checked='1'>
@@ -22,7 +26,11 @@ const Article = ({ article }) => {
 					bis_skin_checked='1'
 				>
 					<div className='btn-group' bis_skin_checked='1'>
-						<button type='button' className='btn btn-sm btn-outline-primary'>
+						<button
+							type='button'
+							className='btn btn-sm btn-outline-primary'
+							onClick={() => navigate(`article/${article.slug}`)}
+						>
 							View
 						</button>
 						<button type='button' className='btn btn-sm btn-outline-secondary'>
