@@ -6,7 +6,7 @@ const Article = ({ article, getArticles }) => {
 	const { loggedIn, user } = useSelector(state => state.auth)
 	const navigate = useNavigate()
 
-	const deleteArticle = async (slug) => {
+	const deleteArticle = async slug => {
 		try {
 			await ArticleService.removeArticle(slug)
 			getArticles()
@@ -50,6 +50,7 @@ const Article = ({ article, getArticles }) => {
 								<button
 									type='button'
 									className='btn btn-sm btn-outline-secondary'
+									onClick={() => navigate(`/edit-article/${article.slug}`)}
 								>
 									Edit
 								</button>

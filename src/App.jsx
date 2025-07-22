@@ -11,6 +11,7 @@ import Profile from './pages/profile'
 import Register from './pages/register'
 import AuthService from './service/auth'
 import { signUserSuccess } from './slice/auth'
+import EditArticle from './pages/edit-article'
 
 const App = () => {
 	const dispatch = useDispatch()
@@ -58,6 +59,10 @@ const App = () => {
 					path: '/create-article/',
 					element: <CreateArticle />,
 				},
+				{
+					path: '/edit-article/:slug',
+					element: <EditArticle />
+				}
 			],
 		},
 	])
