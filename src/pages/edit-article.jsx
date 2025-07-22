@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import ArticleService from '../service/article'
 import {
 	getArticleDetailFailure,
 	getArticleDetailStart,
 	getArticleDetailSuccess,
+	postArticleFailure,
+	postArticleStart,
+	postArticleSuccess,
 } from '../slice/article'
 import ArticleForm from '../ui/article-form'
 
@@ -14,6 +17,7 @@ const EditArticle = () => {
 	const [description, setDescription] = useState('')
 	const [body, setBody] = useState('')
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 	const { slug } = useParams()
 
 	useEffect(() => {
@@ -33,7 +37,20 @@ const EditArticle = () => {
 		getArticleDetail()
 	}, [])
 
-	const formSubmit = () => {}
+	const formSubmit = async e => {
+		e.preventDefault()
+		const article = { title, description, body }
+		dispatch(postArticleStart())
+
+		try {
+			await ArticleService.editArticle(slug, article)
+			dispatch(postArticleSuccess())
+			navigate('/')
+		} catch (error) {
+			console.log(error)
+			dispatch(postArticleFailure())
+		}
+	}
 
 	const formProps = {
 		title,
