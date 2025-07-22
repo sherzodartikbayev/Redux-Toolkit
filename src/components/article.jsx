@@ -1,7 +1,19 @@
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import ArticleService from '../service/article'
 
-const Article = ({ article }) => {
+const Article = ({ article, getArticles }) => {
+	const { loggedIn, user } = useSelector(state => state.auth)
 	const navigate = useNavigate()
+
+	const deleteArticle = async (slug) => {
+		try {
+			await ArticleService.removeArticle(slug)
+			getArticles()
+		} catch (error) {
+			console.log(error)
+		}
+	}
 
 	return (
 		<div className='col' bis_skin_checked='1'>
@@ -33,12 +45,23 @@ const Article = ({ article }) => {
 						>
 							View
 						</button>
-						<button type='button' className='btn btn-sm btn-outline-secondary'>
-							Edit
-						</button>
-						<button type='button' className='btn btn-sm btn-outline-danger'>
-							Delete
-						</button>
+						{loggedIn && user.username === article.author.username && (
+							<>
+								<button
+									type='button'
+									className='btn btn-sm btn-outline-secondary'
+								>
+									Edit
+								</button>
+								<button
+									type='button'
+									className='btn btn-sm btn-outline-danger'
+									onClick={() => deleteArticle(article.slug)}
+								>
+									Delete
+								</button>
+							</>
+						)}
 					</div>
 					<small className='text-muted fw-bold text-capitalize'>
 						{article.author.username}

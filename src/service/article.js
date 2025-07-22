@@ -17,7 +17,7 @@ const ArticleService = {
 	},
 
 	async removeArticle(slug) {
-		const { data } = await axios.delete(slug)
+		const { data } = await axios.delete(`/articles/${slug}`)
 		return data
 	},
 }

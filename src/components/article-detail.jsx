@@ -50,7 +50,7 @@ const ArticleDetailItem = ({ detail }) => {
 				</div>
 
 				<Link to={'/'}>
-					<button class='btn btn-primary btn-lg' type='button'>
+					<button className='btn btn-primary btn-lg' type='button'>
 						Example button
 					</button>
 				</Link>
