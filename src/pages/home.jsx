@@ -1,9 +1,33 @@
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Article from '../components/article'
+import {
+	getArticleFailure,
+	getArticleStart,
+	getArticleSuccess,
+} from '../slice/article'
 import Loader from '../ui/loader'
+import ArticleService from '../service/article'
 
 const Home = () => {
 	const { articles, isLoading, error } = useSelector(state => state.article)
+	const dispatch = useDispatch()
+
+	const getArticles = async () => {
+		dispatch(getArticleStart())
+
+		try {
+			const response = await ArticleService.getArticles()
+			dispatch(getArticleSuccess(response.articles))
+		} catch (error) {
+			console.log(error)
+			dispatch(getArticleFailure(error.response.data.errors))
+		}
+	}
+
+	useEffect(() => {
+		getArticles()
+	}, [])
 
 	return (
 		<section className=''>
