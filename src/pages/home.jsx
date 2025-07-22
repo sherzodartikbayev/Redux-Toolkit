@@ -38,7 +38,11 @@ const Home = () => {
 				<div className='row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3'>
 					{articles &&
 						articles.map(article => (
-							<Article key={article.id} article={article} getArticles={getArticles} />
+							<Article
+								key={article.id}
+								article={article}
+								getArticles={getArticles}
+							/>
 						))}
 				</div>
 			</div>
