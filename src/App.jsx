@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { getItem } from './helpers/persistance-storage'
 import RootLayout from './layout/root-layout'
 import ArticleDetail from './pages/article-detail'
+import CreateArticle from './pages/create-article'
 import Home from './pages/home'
 import Login from './pages/login'
 import Profile from './pages/profile'
@@ -71,6 +72,10 @@ const App = () => {
 				{
 					path: '/article/:slug',
 					element: <ArticleDetail />,
+				},
+				{
+					path: '/create-article/',
+					element: <CreateArticle />,
 				},
 			],
 		},
